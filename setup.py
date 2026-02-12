@@ -26,4 +26,3 @@ packages=find_packages(),
 #install_requires=['numpy', 'pandas', 'seaborn'], or we can use the get_requirements function to read from requirements.txt
 install_requires=get_requirements('requirements.txt'),
 )
-
