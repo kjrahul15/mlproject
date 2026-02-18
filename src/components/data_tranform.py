@@ -23,10 +23,10 @@ class DataTransformation:
     def __init__(self):
         self.data_transformation_config = DataTransformationConfig()
 
-    def get_data_trnasformer_object(self):
+    def get_data_transformer_object(self):
 
         """
-        Docstring for get_data_trnasformer_object
+        Docstring for get_data_transformer_object
         
         This function is responsible for data transformation. 
         It creates a pipeline for numerical and categorical features, applies imputation and scaling, 
@@ -81,21 +81,21 @@ class DataTransformation:
             logging.info("Read train and test data completed")
 
             logging.info("Obtaining preprocssing object")
-            preprocessor_obj = self.get_data_trnasformer_object()
+            preprocessor_obj = self.get_data_transformer_object()
 
             target_column_name = 'math_score'
-            numerical_columns = ['writing score', 'reading score']
+            numerical_columns = ["writing_score", "reading_score"]
 
-            imput_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
+            input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)
             target_feature_train_df = train_df[target_column_name]
 
-            imput_feature_test_df = test_df.drop(columns=[target_column_name], axis=1)
+            input_feature_test_df = test_df.drop(columns=[target_column_name], axis=1)
             target_feature_test_df = test_df[target_column_name]
 
             logging.info("Applying preprocessing object on training and testing data")
 
-            input_feature_train_arr = preprocessor_obj.fit_transform(imput_feature_train_df)
-            input_feature_test_arr = preprocessor_obj.transform(imput_feature_test_df)
+            input_feature_train_arr = preprocessor_obj.fit_transform(input_feature_train_df)
+            input_feature_test_arr = preprocessor_obj.transform(input_feature_test_df)
 
             train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
